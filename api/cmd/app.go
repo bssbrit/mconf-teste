@@ -13,6 +13,6 @@ func main() {
 
   n := negroni.Classic() // Includes some default middlewares
   n.UseHandler(mux)
-
+  println("Server is running on port 3000")
   http.ListenAndServe(":3000", n)
 }

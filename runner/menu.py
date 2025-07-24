@@ -8,7 +8,7 @@ def display_menu():
     print("=" * 32)
 
 def format_book_results(response_text):
-    """Format the JSON response for better readability"""
+    
     try:
         books = json.loads(response_text)
         if not books:
@@ -38,7 +38,7 @@ def format_book_results(response_text):
         return f"Error parsing response: {response_text}"
 
 def get_user_choice():
-    """Get user menu choice"""
+   
     try:
         choice = input("Enter your choice (1-2): ").strip()
         return int(choice)
@@ -46,7 +46,7 @@ def get_user_choice():
         return 0
 
 def get_book_name():
-    """Get book name from user input"""
+   
     book_name = input("Enter book name to search: ").strip()
     if not book_name:
         raise ValueError("Book name cannot be empty")

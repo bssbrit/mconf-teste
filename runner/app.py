@@ -3,7 +3,7 @@ import sys
 from menu import display_menu, format_book_results, get_user_choice, get_book_name, ask_for_another_search
 
 def search_book(book_name):
-    """Search for a book using the API"""
+   
     print(f"Searching for: {book_name}")
     
     params = {'book_name': book_name}
@@ -19,12 +19,12 @@ def search_book(book_name):
         print(f"Connection error: {e}")
 
 def main():
-    # Check if book name was provided as command line argument
+   
     if len(sys.argv) > 1:
         book_name = " ".join(sys.argv[1:])
         search_book(book_name)
         
-        # Ask for another search after command line search
+    
         while ask_for_another_search():
             try:
                 book_name = get_book_name()
@@ -35,7 +35,6 @@ def main():
         print("Goodbye!")
         return
     
-    # Interactive menu mode
     while True:
         display_menu()
         choice = get_user_choice()
@@ -45,7 +44,7 @@ def main():
                 book_name = get_book_name()
                 search_book(book_name)
                 
-                # Ask if user wants another search
+                
                 if not ask_for_another_search():
                     print("Goodbye!")
                     break

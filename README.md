@@ -27,7 +27,7 @@ cd mconf-teste
 docker build -t mconf/api:candidato-1 ./api
 
 # Run the API (will be accessible on port 3000)
-docker run --ti --rm -p 3000:3000 mconf/api:candidato-1
+docker run -ti --rm -p 3000:3000 mconf/api:candidato-1
 ```
 
 ### 3. Build and run the Runner
@@ -36,7 +36,7 @@ docker run --ti --rm -p 3000:3000 mconf/api:candidato-1
 docker build -t mconf/runner:candidato-1 ./runner #(if in root)
 
 # Run a book search (replace "Lord of the Rings" with your search term)
-docker run --ti --rm --network host mconf/runner:candidato-1 "Lord of the Rings"
+docker run -ti --rm --network host mconf/runner:candidato-1 "Lord of the Rings"
 ```
 
 ## API Endpoints

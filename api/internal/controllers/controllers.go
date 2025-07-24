@@ -14,7 +14,7 @@ func extractBookName(r *http.Request) (string, error) {
     if bookName == "" {
         return "", fmt.Errorf("book_name parameter is required")
     }
-    // Replace spaces with "+" for URL encoding
+    
     bookName = strings.ReplaceAll(bookName, " ", "+")
     return bookName, nil
 }
@@ -34,7 +34,7 @@ func trimBookJSON(rawJSON []byte) ([]byte, error) {
         return nil, fmt.Errorf("invalid JSON response: %w", err)
     }
     
-    // Return only the trimmed data
+    
     trimmedData, err := json.Marshal(response.Docs)
     if err != nil {
         return nil, fmt.Errorf("failed to marshal trimmed data: %w", err)
@@ -63,14 +63,14 @@ func fetchBookData(bookName string) ([]byte, error) {
 
 func FetchBook() http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
-        // Extract book name
+       
         bookName, err := extractBookName(r)
         if err != nil {
             http.Error(w, err.Error(), http.StatusBadRequest)
             return
         }
         
-        // Fetch book data
+       
         rawData, err := fetchBookData(bookName)
         if err != nil {
             log.Println("Error:", err)
@@ -78,7 +78,7 @@ func FetchBook() http.HandlerFunc {
             return
         }
         
-        // Trim JSON to required fields
+        
         trimmedData, err := trimBookJSON(rawData)
         if err != nil {
             log.Println("Error:", err)
@@ -86,7 +86,7 @@ func FetchBook() http.HandlerFunc {
             return
         }
         
-        // Set response headers and write the JSON response
+     
         w.Header().Set("Content-Type", "application/json")
         w.Write(trimmedData)
     }

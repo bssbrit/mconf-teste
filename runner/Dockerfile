@@ -6,10 +6,10 @@ RUN apt-get update
 
 RUN apt-get install -y python3
 
-# Install requests library
+
 RUN pip install requests
 
-# Copy your Python script into the container
+
 COPY . ./
 
 ENTRYPOINT ["python", "./app.py"]

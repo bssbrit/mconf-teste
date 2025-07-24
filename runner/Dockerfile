@@ -10,7 +10,7 @@ RUN apt-get install -y python3
 RUN pip install requests
 
 # Copy your Python script into the container
-COPY app.py ./
+COPY . ./
 
 ENTRYPOINT ["python", "./app.py"]
 

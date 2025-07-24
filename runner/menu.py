@@ -51,3 +51,14 @@ def get_book_name():
     if not book_name:
         raise ValueError("Book name cannot be empty")
     return book_name
+
+def ask_for_another_search():
+    """Ask user if they want to perform another search"""
+    while True:
+        choice = input("\nWould you like to search for another book? (y/n): ").strip().lower()
+        if choice in ['y', 'yes']:
+            return True
+        elif choice in ['n', 'no']:
+            return False
+        else:
+            print("Please enter 'y' for yes or 'n' for no.")

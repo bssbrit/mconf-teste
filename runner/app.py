@@ -1,6 +1,6 @@
 import requests
 import sys
-from menu import display_menu, format_book_results, get_user_choice, get_book_name
+from menu import display_menu, format_book_results, get_user_choice, get_book_name, ask_for_another_search
 
 def search_book(book_name):
     """Search for a book using the API"""
@@ -23,6 +23,16 @@ def main():
     if len(sys.argv) > 1:
         book_name = " ".join(sys.argv[1:])
         search_book(book_name)
+        
+        # Ask for another search after command line search
+        while ask_for_another_search():
+            try:
+                book_name = get_book_name()
+                search_book(book_name)
+            except ValueError as e:
+                print(f"Error: {e}")
+        
+        print("Goodbye!")
         return
     
     # Interactive menu mode
@@ -34,6 +44,11 @@ def main():
             try:
                 book_name = get_book_name()
                 search_book(book_name)
+                
+                # Ask if user wants another search
+                if not ask_for_another_search():
+                    print("Goodbye!")
+                    break
             except ValueError as e:
                 print(f"Error: {e}")
         elif choice == 2:
